@@ -14,14 +14,32 @@ export default class PictureInPictureManager extends EventEmitter {
 	constructor(video) {
 		super();
 		this.pictureInPictureElement = false;
-		this.videoEl = video;
+		this.video = video;
 	}
+
+	/**
+	 * Check PIP enable state. Blocked on Android.
+	 */
+	initVideo() {
+		const onPipReady = () => {
+			this.emit("disabled", ((this.videoEl.readyState === 0) || this.videoEl.disablePictureInPicture));
+		};
+
+		onPipReady();
+
+		this.videoEl.addEventListener('loadedmetadata', onPipReady);
+		this.videoEl.addEventListener('emptied', onPipReady);
+
+		
+	}
+
 
 	/**
 	 * Set a new video element
 	 */
 	set video(value) {
 		this.videoEl = value;
+		this.initVideo();
 	}
 
 	/**
