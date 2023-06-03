@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=yes">
+	
+		
+	</head>
+	<body>
+		<div id="container">
+			<video id="video" loop crossOrigin="anonymous" controls playsinline>
+				<source src="https://videos.electroteque.org/bitrate/big_buck_bunny_2000k.mp4">
+			</video>
+	
+		</div>
+        
+		<script type="importmap">
+			{
+				"imports": {
+					"pip-manager": "../build/pip-manager.module.js"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import {
+				PictureInPictureManager,
+				PictureInPictureUtil
+			} from 'pip-manager';
+
+            const video = document.getElementById( 'video' ),
+            container = document.getElementById( 'container' );
+
+            if (PictureInPictureUtil.supported) {
+                const pipButton = document.createElement("button");
+                pipButton.innerText = "Enter Pip";
+
+                const pipManager = new PictureInPictureManager(video);
+
+                pipManager.on("enterpictureinpicture", () => {
+           
+                    pipButton.innerText = "Exit Pip";
+                }).on("leavepictureinpicture", () => {
+                   
+                    pipButton.innerText = "Enter Pip";
+                });
+
+                pipButton.addEventListener("click", () => {
+                    pipManager.togglePictureInPicture();
+                });
+
+                pipManager.init();
+
+                container.appendChild(pipButton);
+
+            }
+
+        </script>
+    
+	</body>
+</html>
