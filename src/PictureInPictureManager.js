@@ -92,7 +92,7 @@ export default class PictureInPictureManager extends EventEmitter {
 	      this.emit("enterpictureinpicture", element);
 	    } else {
 	      if (document.pictureInPictureElement == element) {
-	        document.pictureInPictureElement = null;
+	       // document.pictureInPictureElement = null;
 			this.emit("leavepictureinpicture");
 	      }
 		}
