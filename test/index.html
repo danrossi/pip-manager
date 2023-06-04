@@ -48,7 +48,7 @@
                 const pipButton = document.createElement("button");
                 pipButton.innerText = "Enter Pip";
 
-                const pipManager = new PictureInPictureManager(video);
+                const pipManager = new PictureInPictureManager();
 
                 pipManager.on("enterpictureinpicture", () => {
            
@@ -67,7 +67,7 @@
                     pipManager.togglePictureInPicture();
                 });
 
-                pipManager.init();
+                pipManager.init(video);
 
                 document.body.appendChild(pipButton);
 

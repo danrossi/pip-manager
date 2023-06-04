@@ -237,10 +237,9 @@ let _pipWindow;
 
 class PictureInPictureManager extends EventEmitter {
 
-	constructor(video) {
+	constructor() {
 		super();
 		this.pictureInPictureElement = false;
-		this.video = video;
 	}
 
 	/**
@@ -271,7 +270,9 @@ class PictureInPictureManager extends EventEmitter {
 	/**
 	 * init events
 	 */
-	init() {
+	init(video) {
+
+		this.video = video;
 
 		if (PictureInPictureUtil.webkitSupport) {
 			this.initWebkitEvents();
@@ -313,7 +314,7 @@ class PictureInPictureManager extends EventEmitter {
 
 	    if (element.webkitPresentationMode == "picture-in-picture") {
 	      // Keep track of the PiP element.  This element just entered PiP mode.
-	      document.pictureInPictureElement = element;
+	      //document.pictureInPictureElement = element;
 	      this.emit("enterpictureinpicture", element);
 	    } else {
 	      if (document.pictureInPictureElement == element) {
