@@ -357,8 +357,8 @@ class PictureInPictureManager extends EventEmitter {
 	 * Enter/exit Webkit pip
 	 */
 	toggleWebkitPip() {
-	
-		if (!document.pictureInPictureElement) {
+		//extra supports check
+		if (!document.pictureInPictureElement && this.videoEl.webkitSupportsPresentationMode("picture-in-picture")) {
 	      this.videoEl.webkitSetPresentationMode("picture-in-picture");
 	    } else {
 		  //exit pip for webkit
