@@ -336,16 +336,16 @@ class PictureInPictureManager extends EventEmitter {
 	/**
 	 * Enter/exit Chrome pip 
 	 */
-	toggleChromePip() {
+	async toggleChromePip() {
 		if (!document.pictureInPictureElement) {
-	      this.videoEl.requestPictureInPicture()
+	      await this.videoEl.requestPictureInPicture()
 	      .catch(error => {
 	        // Video failed to enter Picture-in-Picture mode.
 
 			this.emit("failed", error);
 	      });
 	    } else {
-	      document.exitPictureInPicture()
+	      await document.exitPictureInPicture()
 	      .catch(error => {
 	        // Video failed to leave Picture-in-Picture mode.
 			this.emit("failed", error);
@@ -356,24 +356,24 @@ class PictureInPictureManager extends EventEmitter {
 	/**
 	 * Enter/exit Webkit pip
 	 */
-	toggleWebkitPip() {
+	async toggleWebkitPip() {
 		//extra supports check
 		if (!document.pictureInPictureElement && this.videoEl.webkitSupportsPresentationMode("picture-in-picture")) {
-	      this.videoEl.webkitSetPresentationMode("picture-in-picture");
+	      await this.videoEl.webkitSetPresentationMode("picture-in-picture");
 	    } else {
 		  //exit pip for webkit
-	      this.videoEl.webkitSetPresentationMode("inline");
+	      await this.videoEl.webkitSetPresentationMode("inline");
 	    }		
 	}
 
 	/**
 	 * Toggle picture in picture for both apis
 	 */
-	togglePictureInPicture() {
+	async togglePictureInPicture() {
 		if (PictureInPictureUtil.webkitSupport) {
-    		this.toggleWebkitPip();
+    		await this.toggleWebkitPip();
 	    } else {
-	    	this.toggleChromePip();
+	    	await this.toggleChromePip();
 	    }
 	}
 }

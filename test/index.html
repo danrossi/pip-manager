@@ -62,8 +62,8 @@
                     pipButton.disabled = disabled;
                 });
 
-                pipButton.addEventListener("click", () => {
-                    pipManager.togglePictureInPicture();
+                pipButton.addEventListener("click", async () => {
+                    await pipManager.togglePictureInPicture();
                 });
 
                 pipManager.init(video);
