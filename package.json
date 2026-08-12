@@ -1,19 +1,25 @@
 {
-    "name": "pip-manager",
-    "version": "1.0.0",
-    "description": "Add picture in picture and IPhone native fullscreen to webgl canvas rendering",
-    "main": "build/pip-manager.min.js",
-    "module": "build/pip-manager.module.js",
-    "scripts": {
-        "build": "rollup -c rollup.config.js"
-    },
-    "author": "danielr",
-    "devDependencies": {
-        "@rollup/plugin-node-resolve": "^16.0.3",
-        "@rollup/plugin-terser": "^1.0.0",
-        "rollup": "^4.60.1"
-    },
-    "dependencies": {
-        "event-emitter": "github:danrossi/event-emitter"
+  "name": "pip-manager",
+  "version": "1.0.0",
+  "description": "Add picture in picture and IPhone native fullscreen to webgl canvas rendering",
+  "module": "build/pip-manager.module.js",
+  "types": "index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "author": "danielr",
+  "overrides": {
+    "@microsoft/api-extractor": {
+      "typescript": "6.0.x"
     }
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.58.12",
+    "@typescript/typescript6": "^6.0.2",
+    "event-emitter": "github:danrossi/event-emitter",
+    "typescript": "^7.0.2",
+    "unplugin-dts": "^1.0.3",
+    "vite": "^8.2.1"
+  }
 }
